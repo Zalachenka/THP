@@ -99,3 +99,13 @@ puts "How many of the aliases contain a capitalised letter ?"
   puts "#{underscore[0].size} of the aliases contain an underscore."
 
   puts "Here are the aliases in alphabetical order."
+
+  puts tweets.sort_by(&:downcase)
+
+  puts "Here are the 50 shortest aliases:"
+  short = []
+  short << tweets.sort_by(&:length)
+ 
+  puts short[0][1...50]
+
+  puts "@epenser is at place #{tweets.index("@epenser")}"
