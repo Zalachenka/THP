@@ -2,54 +2,36 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 
-
-def get_townhall_email(townhall_url)
-
-  page = Nokogiri::HTML(open(townhall_url)) 
-
-    email_avernes = []
-
-    town_names = []
-
-    town_names << page.xpath('/html/body/div/main/section[1]/div/div/div/p[1]/strong[1]/a').text
-
-    email_avernes << page.xpath('///html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').text
-
-    puts town_names
-
-  puts email_avernes
-
-  hash_emails = Hash[town_names.zip(email_avernes)]
-
-  return hash_emails
-
+def deputes_list
+	page = Nokogiri::HTML(open("https://www.voxpublic.org/spip.php?page=annuaire&cat=deputes&pagnum=600"))
+	@deputes_name = []
+	page.xpath('//h2').each do |x|
+		if x.to_s.include?('class="titre_normal"')
+			@deputes_name << x.text.gsub('Mme ', '').gsub('M ', '')
+		end
+	end
+	return @deputes_name
 end
 
-site = "http://annuaire-des-mairies.com/95/avernes.html"
 
-get_townhall_email(site)
-
-def get_townhall_list
-
-  page = Nokogiri::HTML(open("http://annuaire-des-mairies.com/95/"))
-
-  town_urls = []
-
-  town_names = []
-
-  url = "http://annuaire-des-mairies.com/95/"
- 
-  page.xpath('/html/body/pre/a').each do |td|
-
-  town_urls << url + td["href"]
-
-  end
-
-  return town_urls[5..-1] + town_names
-
+def deputes_email
+	page = Nokogiri::HTML(open("https://www.voxpublic.org/spip.php?page=annuaire&cat=deputes&pagnum=600"))
+	@deputes_emails = []
+	page.xpath('//a').each do |x|
+		if x.to_s.include?("@assemblee-nationale.fr") && x.text.to_s.include?('secretariat-blanchet') == false
+			@deputes_emails << x.text
+		end
+	end
+	return @deputes_emails
 end
 
-get_townhall_list.each do |x| 
-  get_townhall_email(x)
+nom = deputes_list
+email = deputes_email
+i = 0
+tab = []
+deputes_email.each do
+	tab << { "name" => nom[i], "email" => email[i] }
+	i += 1
+end
 
- end
+puts tab
