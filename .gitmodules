@@ -1,0 +1,12 @@
+[submodule "jour21/jour21/The_Gossip_Project"]
+	path = jour21/jour21/The_Gossip_Project
+	url = https://github.com/Zalachenka/The_Gossip_Project.git
+[submodule "jour21/The_Gossip_Project"]
+	path = jour21/The_Gossip_Project
+	url = https://github.com/tsubakiandco/The_Gossip_Project.git
+[submodule "jour22/Jour-22-Full-CRUD"]
+	path = jour22/Jour-22-Full-CRUD
+	url = https://github.com/Zalachenka/Jour-22-Full-CRUD.git
+[submodule "jour22/copy_the_gossip_project"]
+	path = jour22/copy_the_gossip_project
+	url = https://github.com/banotraore/copy_the_gossip_project.git
