@@ -10,3 +10,9 @@
 [submodule "jour22/copy_the_gossip_project"]
 	path = jour22/copy_the_gossip_project
 	url = https://github.com/banotraore/copy_the_gossip_project.git
+[submodule "jour22a/copy_the_gossip_project"]
+	path = jour22a/copy_the_gossip_project
+	url = https://github.com/banotraore/copy_the_gossip_project.git
+[submodule "jour22/Jour22FullCRUD"]
+	path = jour22/Jour22FullCRUD
+	url = https://github.com/Zalachenka/Jour22FullCRUD.git
